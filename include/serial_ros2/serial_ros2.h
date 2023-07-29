@@ -30,6 +30,20 @@ class Serial
         int readSerialPort(void);
 
 
+        struct termios _tty;
+
+        int _serial_port;
+
+        string _port_name;
+        
+        int _baudrate;
+
+        char _buffer[256];
+
+        string _readed_data = "";
+
+
+
 };
 
 #endif
