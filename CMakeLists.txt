@@ -7,9 +7,19 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+
+include_directories(include ${BOOST_INCLUDE_DIRS})
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+add_library(serial_ros2 src/serial_ros2.cpp)
+
+ament_target_dependencies(serial_ros2 rclcpp)
+ament_export_targets(serial_ros2 HAS_LIBRARY_TARGET)
+
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -21,5 +31,26 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+install(TARGETS
+  serial_ros2
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY include/serial_ros2
+        DESTINATION include
+)
+
+
+install(
+  TARGETS serial_ros2
+  EXPORT serial_ros2
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+
+ament_export_include_directories(include)
 
 ament_package()

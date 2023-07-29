@@ -69,7 +69,7 @@ string Serial::readSerialPort(int character_size)
 {
     _readed_data = "";
     
-    while(_readed_data.size() <= character_size)
+    while(_readed_data.size() <= (std::size_t)character_size)
     {
         _bytes = read(_serial_port, _buffer, sizeof(_buffer));
         _readed_data = _readed_data + string(_buffer, _bytes);
