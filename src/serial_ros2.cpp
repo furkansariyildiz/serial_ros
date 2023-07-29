@@ -3,22 +3,22 @@
 Serial::Serial(string port_name, int baudrate)
 {
     _port_name = port_name;
-    _baudrate = baudrate;
+    baudrate_ = baudrate;
 }
 
 Serial::~Serial(void)
 {
-    close(_serial_port);
+    close(serial_port_);
 }
 
 int Serial::openSerialPort(void)
 {
-    _serial_port = open(_port_name.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
+    serial_port_ = open(_port_name.c_str(), O_RDWR | O_NOCTTY | O_NDELAY);
     
-    if(_serial_port < 0)
+    if(serial_port_ < 0)
     {
         std::cerr << "Can not open serial port. Please check your USB or serial_name." << std::endl;
-        close(_serial_port);
+        close(serial_port_);
         return -1;        
     }
 
@@ -30,15 +30,15 @@ int Serial::prepareSerialPort(void)
 {
     memset(&_tty, 0, sizeof(_tty));
 
-    if(tcgetattr(_serial_port, &_tty) != 0)
+    if(tcgetattr(serial_port_, &_tty) != 0)
     {
         std::cerr << "Can not prepare serial port. Check your USB connection." << std::endl;
-        close(_serial_port);
+        close(serial_port_);
         return -1;
     }
 
-    cfsetospeed(&_tty, (speed_t)_baudrate);
-    cfsetispeed(&_tty, (speed_t)_baudrate);
+    cfsetospeed(&_tty, (speed_t)baudrate_);
+    cfsetispeed(&_tty, (speed_t)baudrate_);
 
     _tty.c_cflag     &=  ~PARENB;           
     _tty.c_cflag     &=  ~CSTOPB;
@@ -51,12 +51,12 @@ int Serial::prepareSerialPort(void)
     _tty.c_cflag     |=  CREAD | CLOCAL;      
 
     cfmakeraw(&_tty);
-    tcflush(_serial_port, TCIFLUSH);
+    tcflush(serial_port_, TCIFLUSH);
 
-    if(tcsetattr(_serial_port, TCSANOW, &_tty) != 0)
+    if(tcsetattr(serial_port_, TCSANOW, &_tty) != 0)
     {
         std::cerr << "Can not configure Serial Port." << std::endl;
-        close(_serial_port);
+        close(serial_port_);
         return -1;
     }
 
@@ -71,7 +71,7 @@ string Serial::readSerialPort(int character_size)
     
     while(_readed_data.size() <= (std::size_t)character_size)
     {
-        _bytes = read(_serial_port, _buffer, sizeof(_buffer));
+        _bytes = read(serial_port_, _buffer, sizeof(_buffer));
         _readed_data = _readed_data + string(_buffer, _bytes);
     }
 
@@ -81,7 +81,7 @@ string Serial::readSerialPort(int character_size)
 
 int Serial::writeSerialPort(string data)
 {
-    write(_serial_port, data.c_str(), data.size());
+    write(serial_port_, data.c_str(), data.size());
     return 0;
 }
 
