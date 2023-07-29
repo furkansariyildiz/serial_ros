@@ -7,6 +7,7 @@
 #include <cstring>
 #include <fcntl.h>
 #include <termios.h>
+#include <unistd.h>
 
 
 using namespace std;
@@ -27,7 +28,7 @@ class Serial
         int openSerialPort(void);
         int prepareSerialPort(void);
         int writeSerialPort(string data);
-        int readSerialPort(void);
+        string readSerialPort(int character_size);
 
 
         struct termios _tty;
@@ -37,6 +38,8 @@ class Serial
         string _port_name;
         
         int _baudrate;
+
+        int _bytes = 0;
 
         char _buffer[256];
 

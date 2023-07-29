@@ -6,6 +6,10 @@ Serial::Serial(string port_name, int baudrate)
     _baudrate = baudrate;
 }
 
+Serial::~Serial(void)
+{
+    close(_serial_port);
+}
 
 int Serial::openSerialPort(void)
 {
@@ -14,6 +18,7 @@ int Serial::openSerialPort(void)
     if(_serial_port < 0)
     {
         std::cerr << "Can not open serial port. Please check your USB or serial_name." << std::endl;
+        close(_serial_port);
         return -1;        
     }
 
@@ -28,6 +33,7 @@ int Serial::prepareSerialPort(void)
     if(tcgetattr(_serial_port, &_tty) != 0)
     {
         std::cerr << "Can not prepare serial port. Check your USB connection." << std::endl;
+        close(_serial_port);
         return -1;
     }
 
@@ -50,9 +56,32 @@ int Serial::prepareSerialPort(void)
     if(tcsetattr(_serial_port, TCSANOW, &_tty) != 0)
     {
         std::cerr << "Can not configure Serial Port." << std::endl;
+        close(_serial_port);
         return -1;
     }
 
     std::cout << "Serial configuration is completed." << std::endl;
     return 0;
 }
+
+
+string Serial::readSerialPort(int character_size)
+{
+    _readed_data = "";
+    
+    while(_readed_data.size() <= character_size)
+    {
+        _bytes = read(_serial_port, _buffer, sizeof(_buffer));
+        _readed_data = _readed_data + string(_buffer, _bytes);
+    }
+
+    return _readed_data;
+}
+
+
+int Serial::writeSerialPort(string data)
+{
+    write(_serial_port, data.c_str(), data.size());
+    return 0;
+}
+
