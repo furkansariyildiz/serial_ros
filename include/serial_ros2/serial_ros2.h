@@ -3,6 +3,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <iostream>
+#include <chrono>
 #include <string>
 #include <cstring>
 #include <fcntl.h>
@@ -15,7 +16,15 @@ using namespace std;
 class Serial
 {
     private:
+        /**
+         * @brief Serial port int type. 
+        */
         int serial_port_;
+
+
+        /**
+         * @brief Baudrate of the serial port. B9600, B14400, B19200, B115200
+        */
         int baudrate_;
 
 
