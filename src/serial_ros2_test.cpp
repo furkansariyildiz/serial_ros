@@ -8,7 +8,7 @@ Node("serial_ros_node")
     _write_timer = this->create_wall_timer(10ms, std::bind(&SerialROS::writeToSerailPort, this));
 
     declare_parameter("port_name", "/dev/ttyACM0");
-    declare_parameter("baudrate", "19200");
+    declare_parameter("baudrate", 19200);
     declare_parameter("character_size", 150);
 
     _port_name = this->get_parameter("port_name").as_string();
@@ -21,6 +21,9 @@ Node("serial_ros_node")
 
     Serial serial = Serial("/dev/ttyACM0", B19200);
     _serial_pointer = &serial;
+    
+    _serial_pointer->openSerialPort();
+    _serial_pointer->prepareSerialPort();
 }
 
 
