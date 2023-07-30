@@ -22,6 +22,12 @@ class SerialROS: public rclcpp::Node
         void readFromSerialPort(void);
         void writeToSerailPort(void);
 
-};
+        string _port_name;
+
+        int _baudrate;
+
+        Serial *_serial_pointer;
+
+};  
 
 #endif
