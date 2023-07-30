@@ -3,6 +3,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <serial_ros2/serial_ros2.h>
+#include "../../src/serial_ros2.cpp"
 
 
 using namespace std;

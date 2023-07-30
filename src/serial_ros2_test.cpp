@@ -24,6 +24,11 @@ Node("serial_ros_node")
 }
 
 
+SerialROS::~SerialROS()
+{
+
+}
+
 void SerialROS::readFromSerialPort(void)
 {
     _readed_data = _serial_pointer->readSerialPort(_character_size);
