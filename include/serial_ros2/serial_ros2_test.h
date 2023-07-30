@@ -26,6 +26,12 @@ class SerialROS: public rclcpp::Node
 
         int _baudrate;
 
+        int _character_size;
+
+        string _readed_data = "";
+
+        string _data_to_be_written = "";
+
         Serial *_serial_pointer;
 
 };  
