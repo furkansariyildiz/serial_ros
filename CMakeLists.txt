@@ -16,21 +16,25 @@ include_directories(include ${BOOST_INCLUDE_DIRS})
 
 add_library(serial_ros2 src/serial_ros2.cpp)
 
+
 ament_target_dependencies(serial_ros2 rclcpp)
 ament_export_targets(serial_ros2 HAS_LIBRARY_TARGET)
 
 
+add_executable(serial_ros2_test src/serial_ros2_test.cpp)
+target_link_libraries(serial_ros2_test ${catkin_LIBRARES})
+ament_target_dependencies(serial_ros2_test rclcpp)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # uncomment the line when a copyright and license is not present in all source files
-  #set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # uncomment the line when this package is not in a git repo
-  #set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+install(TARGETS
+        serial_ros2_test
+        DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+        launch
+        config
+        DESTINATION share/${PROJECT_NAME}/
+)
 
 install(TARGETS
   serial_ros2

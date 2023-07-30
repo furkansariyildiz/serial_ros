@@ -3,6 +3,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 #include <serial_ros2/serial_ros2.h>
+#include "../../src/serial_ros2.cpp"
 
 
 using namespace std;
@@ -25,6 +26,12 @@ class SerialROS: public rclcpp::Node
         string _port_name;
 
         int _baudrate;
+
+        int _character_size;
+
+        string _readed_data = "";
+
+        string _data_to_be_written = "";
 
         Serial *_serial_pointer;
 
