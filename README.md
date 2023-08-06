@@ -1,6 +1,6 @@
 # serial_ros
 <p align="center">
-  <img src="documents/ros2.png" />
+  <img src="documents/ros2.png" style="width: 50%, height: 50%"/>
 </p>
 
 ### Contact with me all around the web:
