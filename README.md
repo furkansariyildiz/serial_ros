@@ -20,5 +20,11 @@ cd ~ros2_ws && source install/setup.bash
 ros2 run serial_ros2 serial_ros2_test
 ```
 
+### For serial_ros2_test via using ros2 launch command
+```bash
+cd ~ros2_ws && source install/setup.bash
+ros2 launch serial_ros2 serial_ros2_test.launch.py
+```
+
 ### Contact with me all around the web:
 [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/furkan-sariyildiz/)
