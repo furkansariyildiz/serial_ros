@@ -29,7 +29,7 @@ Node("serial_ros_node")
 
 SerialROS::~SerialROS()
 {
-
+    close(_serial_pointer->_serial_port);
 }
 
 void SerialROS::readFromSerialPort(void)
