@@ -1,0 +1,8 @@
+/serial_ros2_test_node:
+  ros__parameters:
+    timer_period: 0.01 # Main loop period
+    port_name: "/dev/ttyACM1" # Port name of Serial Port
+    baudrate: 115200 # Baudrate of serial Port 
+    read_period: 0.01 # Read Period for serial
+    write_period: 0.1 # Write Period for serial
+    
