@@ -19,10 +19,11 @@ Node("serial_ros_node")
     RCLCPP_INFO_STREAM(this->get_logger(), "Serial Baudrate: " << _baudrate);
     RCLCPP_INFO_STREAM(this->get_logger(), "Readed character size as byte: " << _character_size);
 
-    Serial serial = Serial("/dev/ttyACM0", B19200);
+    Serial serial = Serial("/dev/ttyACM0", _baudrate);
     _serial_pointer = &serial;
     
     _serial_pointer->openSerialPort();
+    _serial_pointer->settingBaudrate();
     _serial_pointer->prepareSerialPort();
 }
 

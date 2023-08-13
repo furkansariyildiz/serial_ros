@@ -25,6 +25,41 @@ int Serial::openSerialPort(void)
     return 0;
 }
 
+void Serial::settingBaudrate(void)
+{
+    switch (baudrate_)
+    {
+        case 9600:
+            std::cout << "Baudrate of Serial Port 9600: " << std::endl;
+            baudrate_ = B9600;
+            break;
+
+        case 19200:
+            std::cout << "Baudrate of Serial Port 19200: " << std::endl;
+            baudrate_ = B19200;
+            break;
+
+        case 38400:
+            std::cout << "Baudrate of Serial Port 38400: " << std::endl;
+            baudrate_ = B38400; 
+            break;
+
+        case 57600:
+            std::cout << "Baudrate of Serial Port 57600: " << std::endl;
+            baudrate_ = B57600;
+            break;
+
+        case 115200:
+            std::cout << "Baudrate of Serial Port 115200: " << std::endl;
+            baudrate_ = B115200;
+            break;
+        
+        default:
+            std::cout << "Baudrate of Serial Port 9600: " << std::endl;
+            baudrate_ = B9600;
+            break;
+    }
+}
 
 int Serial::prepareSerialPort(void)
 {
