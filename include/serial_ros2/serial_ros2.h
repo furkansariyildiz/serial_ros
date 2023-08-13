@@ -52,6 +52,14 @@ class Serial
          * @return int
         */
         int openSerialPort(void);
+        
+        
+        /**
+         * @brief Function to set baudrate of serial port.
+         * @param void
+         * @return void 
+        */
+        void settingBaudrate(void);
 
 
         /**
