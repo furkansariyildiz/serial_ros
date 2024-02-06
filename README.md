@@ -7,7 +7,7 @@
 ### To build serial_ros2 package
 
 ```bash
-cd ~ros2_ws/src && git clone git@github.com:furkansariyildiz/serial_ros.git
+cd ~ros2_ws/src && git clone https://github.com/furkansariyildiz/serial_ros.gitgit
 ```
 
 ```bash
