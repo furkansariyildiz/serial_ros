@@ -14,13 +14,13 @@ cd ~ros2_ws/src && git clone https://github.com/furkansariyildiz/serial_ros.gitg
 cd ~ros2_ws && colcon build --symlink-install --packages-select serial_ros2
 ```
 
-### For serial_ros2_test via using ros2 run command
+### For serial_ros2_test via ros2 run command
 ```bash
 cd ~ros2_ws && source install/setup.bash
 ros2 run serial_ros2 serial_ros2_test
 ```
 
-### For serial_ros2_test via using ros2 launch command
+### For serial_ros2_test via ros2 launch command
 ```bash
 cd ~ros2_ws && source install/setup.bash
 ros2 launch serial_ros2 serial_ros2_test.launch.py
